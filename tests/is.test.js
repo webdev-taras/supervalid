@@ -1,5 +1,5 @@
 const { test } = require('node:test')
-const { ok, deepEqual } = require('node:assert/strict')
+const { ok, deepEqual, throws } = require('node:assert/strict')
 
 const { is } = require('../src')
 
@@ -13,4 +13,19 @@ test('is provides set of registered types', t => {
     'array',
     'object',
   ])
+})
+
+test('is.blabla is not defined', t => {
+  throws(
+    () => is.blabla(),
+    {
+      name: 'TypeError',
+      message: `type 'blabla' is not defined`,
+    },
+  )
+})
+
+test('is.blabla', t => {
+  is.blabla = is.any()
+  ok(typeof is.blabla() === 'object')
 })
