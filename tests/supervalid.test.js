@@ -6,5 +6,4 @@ const supervalid = require('../src')
 test('supervalid API', t => {
   ok(typeof supervalid === 'object' && supervalid != null)
   ok(typeof supervalid.is === 'object')
-  ok(typeof supervalid.define === 'function')
 })

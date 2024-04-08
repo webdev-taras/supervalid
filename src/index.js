@@ -1,13 +1,13 @@
-const basic = require("./basic")
+const validator = require("./validator")
 
 
 const types = {
-  'any': Object.create(basic),
-  'boolean': () => {},
-  'number': () => {},
-  'string': () => {},
-  'array': () => {},
-  'object': () => {},
+  'any': Object.create(validator),
+  'boolean': Object.create(validator),
+  'number': Object.create(validator),
+  'string': Object.create(validator),
+  'array': Object.create(validator),
+  'object': Object.create(validator),
 }
 
 const is = new Proxy(types, {
@@ -16,16 +16,17 @@ const is = new Proxy(types, {
     if (!proto) {
       throw new TypeError(`type '${property}' is not defined`)
     }
-    console.log(property, 'proto.rules', proto.rules)
     const instance = Object.create(proto)
     instance.rules = [...proto.rules]
     return instance
+  },
+  set(target, property, value) {
+    // TODO: value should be validator instance
+    // TODO: if value if function then wrap up by validator
+    target[property] = value
   }
 })
 
-function define() {}
-
 module.exports = {
   is,
-  define,
 }

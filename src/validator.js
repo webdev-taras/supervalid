@@ -1,8 +1,6 @@
-const basic = {
+module.exports = {
   rules: [],
   validate() {},
   assert() {},
   custom() {},
 }
-
-module.exports = basic
