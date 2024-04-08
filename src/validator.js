@@ -2,7 +2,6 @@ module.exports = {
   rules: [],
   validate(value) {
     for(rule of this.rules) {
-      console.log('rule', rule)
       if (rule(value) !== true)
         return false
     }
