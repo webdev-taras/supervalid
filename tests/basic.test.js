@@ -6,6 +6,7 @@ const basic = require('../src/basic')
 test('basic interface', t => {
   ok(typeof basic === 'object')
   deepEqual(Object.keys(basic), [
+    'rules',
     'validate',
     'assert',
     'custom',

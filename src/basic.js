@@ -1,4 +1,5 @@
 const basic = {
+  rules: [],
   validate() {},
   assert() {},
   custom() {},

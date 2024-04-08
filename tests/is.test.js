@@ -3,9 +3,9 @@ const { ok, deepEqual } = require('node:assert/strict')
 
 const { is } = require('../src')
 
-test('is() returns set of factories', t => {
-  ok(typeof is === 'function')
-  deepEqual(Object.keys(is()), [
+test('is provides set of registered types', t => {
+  ok(typeof is === 'object')
+  deepEqual(Object.keys(is), [
     'any',
     'boolean',
     'number',
@@ -14,4 +14,3 @@ test('is() returns set of factories', t => {
     'object',
   ])
 })
-
