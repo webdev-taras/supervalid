@@ -1,16 +1,6 @@
 const inherit = require("./inherit")
-const any = require("./types/any")
 
-const types = {
-  any,
-  'boolean': inherit(any),
-  'number': inherit(any),
-  'string': inherit(any),
-  'array': inherit(any),
-  'object': inherit(any),
-}
-
-module.exports = new Proxy(types, {
+module.exports = new Proxy({}, {
   get: (target, property) => {
     const proto = target[property]
     if (!proto) {

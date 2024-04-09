@@ -1,8 +1,8 @@
 const { test } = require('node:test')
 const { ok, throws } = require('node:assert/strict')
 
-const validator = require('../src/validator')
-const { is } = require('../src')
+const validator = require('../../src/validator')
+const { is } = require('../../src')
 
 test('any instanceof validator', t => {
   ok(typeof is.any === 'function')

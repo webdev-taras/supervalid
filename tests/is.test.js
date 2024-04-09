@@ -3,7 +3,7 @@ const { ok, deepEqual, throws } = require('node:assert/strict')
 
 const { is } = require('../src')
 
-test('is provides set of registered types', t => {
+test('is. provides set of predefined types', t => {
   ok(typeof is === 'object')
   deepEqual(Object.keys(is), [
     'any',
@@ -12,6 +12,10 @@ test('is provides set of registered types', t => {
     'string',
     'array',
     'object',
+    'function',
+    'regexp',
+    'bigint',
+    'date',
   ])
 })
 
