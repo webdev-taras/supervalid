@@ -44,3 +44,19 @@ test('any.assert()', t => {
     },
   )
 })
+
+test('any.required()', t => {
+  const schema = is.any().required()
+
+  ok(schema.validate('qwerty'))
+  ok(schema.validate(1))
+  ok(!schema.validate(undefined))
+  ok(!schema.validate(null))
+  throws(
+    () => schema.assert(),
+    {
+      name: 'TypeError',
+      message: 'Value is required',
+    },
+  )
+})
