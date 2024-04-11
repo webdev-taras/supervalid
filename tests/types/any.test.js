@@ -1,5 +1,5 @@
 const { test } = require('node:test')
-const { ok, throws } = require('node:assert/strict')
+const { ok, equal, deepEqual, throws } = require('node:assert/strict')
 
 const validator = require('../../src/validator')
 const { is } = require('../../src')
@@ -20,6 +20,18 @@ test('any.validate()', t => {
   ok(!schema.validate(null))
   ok(!schema.validate(3))
   ok(!schema.validate('no'))
+})
+
+test('any.warn()', t => {
+  const schema = is.any()
+    .custom(value => value != null || 'Value is required')
+    .custom(value => typeof value === 'string')
+    .custom(({ length }) => length > 3 || { length, message: 'length should be > 3' })
+
+  ok(!schema.warn('qwerty'))
+  equal(schema.warn(null), 'Value is required')
+  equal(schema.warn(3), true)
+  deepEqual(schema.warn('no'), { length: 2, message: 'length should be > 3' })
 })
 
 test('any.assert()', t => {
@@ -50,8 +62,8 @@ test('any.required()', t => {
 
   ok(schema.validate('qwerty'))
   ok(schema.validate(1))
-  ok(!schema.validate(undefined))
-  ok(!schema.validate(null))
+  equal(schema.validate(undefined), 'Value is required')
+  equal(schema.validate(null), 'Value is required')
   throws(
     () => schema.assert(),
     {

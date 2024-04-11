@@ -8,6 +8,7 @@ test('validator interface', t => {
   deepEqual(Object.keys(validator), [
     'rules',
     'validate',
+    'warn',
     'assert',
     'custom',
   ])

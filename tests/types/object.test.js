@@ -1,16 +1,17 @@
 const { test } = require('node:test')
-const { ok, throws } = require('node:assert/strict')
+const { ok, equal, throws } = require('node:assert/strict')
 
 const { is } = require('../../src')
 
 test('object.validate()', t => {
   const schema = is.object()
+  const message = `Should be a type of 'object'`
 
   ok(schema.validate({}))
   ok(schema.validate({ id: 1, name: 'user' }))
-  ok(!schema.validate(null))
-  ok(!schema.validate(3))
-  ok(!schema.validate('no'))
+  equal(schema.validate(null), message)
+  equal(schema.validate(3), message)
+  equal(schema.validate('no'), message)
 })
 
 test('object.assert()', t => {

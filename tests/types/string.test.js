@@ -1,16 +1,17 @@
 const { test } = require('node:test')
-const { ok, throws } = require('node:assert/strict')
+const { ok, equal, throws } = require('node:assert/strict')
 
 const { is } = require('../../src')
 
 test('string.validate()', t => {
   const schema = is.string()
+  const message = `Should be a type of 'string'`
 
   ok(schema.validate(''))
   ok(schema.validate('false'))
-  ok(!schema.validate(null))
-  ok(!schema.validate(3))
-  ok(!schema.validate(false))
+  equal(schema.validate(null), message)
+  equal(schema.validate(3), message)
+  equal(schema.validate(false), message)
 })
 
 test('string.assert()', t => {

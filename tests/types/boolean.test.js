@@ -1,16 +1,17 @@
 const { test } = require('node:test')
-const { ok, throws } = require('node:assert/strict')
+const { ok, equal, throws } = require('node:assert/strict')
 
 const { is } = require('../../src')
 
 test('boolean.validate()', t => {
   const schema = is.boolean()
+  const message = `Should be a type of 'boolean'`
 
   ok(schema.validate(true))
   ok(schema.validate(false))
-  ok(!schema.validate(null))
-  ok(!schema.validate(3))
-  ok(!schema.validate('no'))
+  equal(schema.validate(null), message)
+  equal(schema.validate(3), message)
+  equal(schema.validate('no'), message)
 })
 
 test('boolean.assert()', t => {

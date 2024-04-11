@@ -2,20 +2,27 @@ module.exports = {
   rules: [],
   validate(value) {
     for(rule of this.rules) {
-      if (rule(value) !== true)
-        return false
+      const result = rule(value)
+      if (result !== true)
+        return result
     }
     return true
   },
+  warn(value) {
+    const result = this.validate(value)
+    return (result === true)
+      ? void(0)
+      : result || true
+  },
   assert(value) {
-    for(rule of this.rules) {
-      const result = rule(value)
-      if (result !== true) {
-        const message = (typeof result === 'string')
-          ? result
-          : 'validation error'
-        throw new TypeError(message)
-      }
+    const result = this.warn(value)
+    if (result) {
+      // TODO: case when result is object
+      // TODO: case when result is error
+      const message = (typeof result === 'string')
+        ? result
+        : 'validation error'
+      throw new TypeError(message)
     }
   },
   custom(rule) {

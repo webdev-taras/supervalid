@@ -10,7 +10,7 @@ module.exports = new Proxy({}, {
   },
   set(target, property, value) {
     // TODO: value should be validator instance
-    // TODO: if value if function then wrap up by validator
+    // TODO: if value is function then wrap up by validator
     target[property] = value
   }
 })
