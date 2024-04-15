@@ -9,9 +9,15 @@ test('string.validate()', t => {
 
   ok(schema.validate(''))
   ok(schema.validate('false'))
-  equal(schema.validate(null), message)
-  equal(schema.validate(3), message)
-  equal(schema.validate(false), message)
+})
+
+test('string.warn()', t => {
+  const schema = is.string()
+  const message = `Should be a type of 'string'`
+
+  equal(schema.warn(null), message)
+  equal(schema.warn(3), message)
+  equal(schema.warn(false), message)
 })
 
 test('string.assert()', t => {

@@ -9,9 +9,15 @@ test('regexp.validate()', t => {
 
   ok(schema.validate(/ab+c/))
   ok(schema.validate(new RegExp("ab+c")))
-  equal(schema.validate(null), message)
-  equal(schema.validate(3), message)
-  equal(schema.validate('ab+c'), message)
+})
+
+test('regexp.warn()', t => {
+  const schema = is.regexp()
+  const message = `Should be a type of 'regexp'`
+
+  equal(schema.warn(null), message)
+  equal(schema.warn(3), message)
+  equal(schema.warn('ab+c'), message)
 })
 
 test('regexp.assert()', t => {

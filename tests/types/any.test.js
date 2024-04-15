@@ -28,9 +28,9 @@ test('any.warn()', t => {
     .custom(value => typeof value === 'string')
     .custom(({ length }) => length > 3 || { length, message: 'length should be > 3' })
 
-  ok(!schema.warn('qwerty'))
+  equal(schema.warn('qwerty'), undefined)
   equal(schema.warn(null), 'Value is required')
-  equal(schema.warn(3), true)
+  equal(schema.warn(3), false)
   deepEqual(schema.warn('no'), { length: 2, message: 'length should be > 3' })
 })
 
@@ -62,8 +62,8 @@ test('any.required()', t => {
 
   ok(schema.validate('qwerty'))
   ok(schema.validate(1))
-  equal(schema.validate(undefined), 'Value is required')
-  equal(schema.validate(null), 'Value is required')
+  equal(schema.warn(undefined), 'Value is required')
+  equal(schema.warn(null), 'Value is required')
   throws(
     () => schema.assert(),
     {

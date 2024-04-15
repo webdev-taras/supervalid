@@ -9,9 +9,15 @@ test('boolean.validate()', t => {
 
   ok(schema.validate(true))
   ok(schema.validate(false))
-  equal(schema.validate(null), message)
-  equal(schema.validate(3), message)
-  equal(schema.validate('no'), message)
+})
+
+test('boolean.warn()', t => {
+  const schema = is.boolean()
+  const message = `Should be a type of 'boolean'`
+
+  equal(schema.warn(null), message)
+  equal(schema.warn(3), message)
+  equal(schema.warn('no'), message)
 })
 
 test('boolean.assert()', t => {

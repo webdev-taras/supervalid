@@ -10,9 +10,15 @@ test('number.validate()', t => {
   ok(schema.validate(1))
   ok(schema.validate(3.14))
   ok(schema.validate(Infinity))
-  equal(schema.validate(null), message)
-  equal(schema.validate(NaN), message)
-  equal(schema.validate('100'), message)
+})
+
+test('number.warn()', t => {
+  const schema = is.number()
+  const message = `Should be a type of 'number'`
+
+  equal(schema.warn(null), message)
+  equal(schema.warn(NaN), message)
+  equal(schema.warn('100'), message)
 })
 
 test('number.assert()', t => {

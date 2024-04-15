@@ -5,15 +5,22 @@ const { is } = require('../../src')
 
 test('date.validate()', t => {
   const schema = is.date()
-  const message = `Should be a type of 'date'`
 
   ok(schema.validate(new Date()))
   ok(schema.validate(new Date('2024-01-01')))
   ok(schema.validate(new Date(-1000)))
   ok(schema.validate(new Date(2024, 0, 1)))
-  equal(schema.validate(null), message)
-  equal(schema.validate(3), message)
-  equal(schema.validate(new Date(NaN)), message)
+  ok(schema.validate(new Date('2013-08-14T01:10:00Z')))
+})
+
+test('date.warn()', t => {
+  const schema = is.date()
+  const message = `Should be a type of 'date'`
+
+  equal(schema.warn('2013-08-14T01:10:00Z'), message)
+  equal(schema.warn(null), message)
+  equal(schema.warn(3), message)
+  equal(schema.warn(new Date(NaN)), message)
 })
 
 test('date.assert()', t => {

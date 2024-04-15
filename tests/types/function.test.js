@@ -10,9 +10,15 @@ test('function.validate()', t => {
   ok(schema.validate(ok))
   ok(schema.validate(test))
   ok(schema.validate(new Function()))
-  equal(schema.validate(null), message)
-  equal(schema.validate(3), message)
-  equal(schema.validate('no'), message)
+})
+
+test('function.warn()', t => {
+  const schema = is.function()
+  const message = `Should be a type of 'function'`
+
+  equal(schema.warn(null), message)
+  equal(schema.warn(3), message)
+  equal(schema.warn('no'), message)
 })
 
 test('function.assert()', t => {

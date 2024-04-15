@@ -1,32 +1,29 @@
 module.exports = {
   rules: [],
+  custom(rule) {
+    this.rules.push(rule)
+    return this
+  },
   validate(value) {
-    for(rule of this.rules) {
+    return this.warn(value) === undefined
+  },
+  warn(value) {
+    for(const rule of this.rules) {
       const result = rule(value)
       if (result !== true)
         return result
     }
-    return true
-  },
-  warn(value) {
-    const result = this.validate(value)
-    return (result === true)
-      ? void(0)
-      : result || true
   },
   assert(value) {
     const result = this.warn(value)
-    if (result) {
+    if (result !== undefined) {
       // TODO: case when result is object
       // TODO: case when result is error
       const message = (typeof result === 'string')
         ? result
         : 'validation error'
+      // TODO: include into error: value, path, code, params...
       throw new TypeError(message)
     }
-  },
-  custom(rule) {
-    this.rules.push(rule)
-    return this
   },
 }

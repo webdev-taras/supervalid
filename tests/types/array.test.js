@@ -9,9 +9,15 @@ test('array.validate()', t => {
 
   ok(schema.validate([]))
   ok(schema.validate([1, 2, 3]))
-  equal(schema.validate(null), message)
-  equal(schema.validate(3), message)
-  equal(schema.validate('no'), message)
+})
+
+test('array.warn()', t => {
+  const schema = is.array()
+  const message = `Should be a type of 'array'`
+
+  equal(schema.warn(null), message)
+  equal(schema.warn(3), message)
+  equal(schema.warn('no'), message)
 })
 
 test('array.assert()', t => {
