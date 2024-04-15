@@ -10,4 +10,5 @@ module.exports = (is) => {
   is.bigint = require("./bigint")
   is.date = require("./date")
   is.integer = require("./integer")
+  is.float = require("./float")
 }

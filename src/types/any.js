@@ -4,7 +4,7 @@ const inherit = require("../inherit")
 const any = inherit(validator)
 
 any.required = function() {
-  this.rules.push(value =>
+  this.custom(value =>
     (value != null) || 'Value is required')
   return this
 }
