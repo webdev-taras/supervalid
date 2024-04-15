@@ -5,7 +5,6 @@ const { is } = require('../../src')
 
 test('array.validate()', t => {
   const schema = is.array()
-  const message = `Should be a type of 'array'`
 
   ok(schema.validate([]))
   ok(schema.validate([1, 2, 3]))

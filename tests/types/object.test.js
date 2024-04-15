@@ -46,7 +46,7 @@ test('object.props(): simple case', t => {
 
 test('object.props(): user: simple case', t => {
   const schema = is.object().props({
-    id: is.number(),
+    id: is.integer(),
     name: is.string(),
     groups: is.array(),
   })
@@ -58,16 +58,16 @@ test('object.props(): user: simple case', t => {
 
   ok(schema.validate(user))
   ok(schema.validate({ ...user, password: 'genesis' }))
-  equal(schema.warn({}), `Should be a type of 'number'`)
+  equal(schema.warn({}), `Should be a type of 'integer'`)
   equal(schema.warn({ id: 2 }), `Should be a type of 'string'`)
-  equal(schema.warn({ id: '123', name: 'John', groups: [] }), `Should be a type of 'number'`)
+  equal(schema.warn({ id: '123', name: 'John', groups: [] }), `Should be a type of 'integer'`)
 })
 
 test('object.props(): user: another case', t => {
   const schema = is.object().props({
-    id: is.number(),
+    id: is.integer(),
     name: is.string(),
-    age: is.number(),
+    age: is.integer(),
     address: is.object().props({
       streetAddress: is.string(),
       city: is.string(),
@@ -91,6 +91,6 @@ test('object.props(): user: another case', t => {
 
   ok(schema.validate(user))
   ok(schema.validate({ ...user, email: 'john@doe.com' }))
-  equal(schema.warn({ ...user, id: '123' }), `Should be a type of 'number'`)
+  equal(schema.warn({ ...user, id: '123' }), `Should be a type of 'integer'`)
   equal(schema.warn({ ...user, createdAt: '2013-08-14T01:10:00Z' }), `Should be a type of 'date'`)
 })

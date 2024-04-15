@@ -9,4 +9,5 @@ module.exports = (is) => {
   is.regexp = require("./regexp")
   is.bigint = require("./bigint")
   is.date = require("./date")
+  is.integer = require("./integer")
 }

@@ -5,7 +5,6 @@ const { is } = require('../../src')
 
 test('boolean.validate()', t => {
   const schema = is.boolean()
-  const message = `Should be a type of 'boolean'`
 
   ok(schema.validate(true))
   ok(schema.validate(false))

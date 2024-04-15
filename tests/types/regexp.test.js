@@ -5,7 +5,6 @@ const { is } = require('../../src')
 
 test('regexp.validate()', t => {
   const schema = is.regexp()
-  const message = `Should be a type of 'regexp'`
 
   ok(schema.validate(/ab+c/))
   ok(schema.validate(new RegExp("ab+c")))

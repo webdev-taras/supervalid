@@ -5,7 +5,6 @@ const { is } = require('../../src')
 
 test('number.validate()', t => {
   const schema = is.number()
-  const message = `Should be a type of 'number'`
 
   ok(schema.validate(1))
   ok(schema.validate(3.14))

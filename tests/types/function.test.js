@@ -5,7 +5,6 @@ const { is } = require('../../src')
 
 test('function.validate()', t => {
   const schema = is.function()
-  const message = `Should be a type of 'function'`
 
   ok(schema.validate(ok))
   ok(schema.validate(test))

@@ -5,7 +5,6 @@ const { is } = require('../../src')
 
 test('string.validate()', t => {
   const schema = is.string()
-  const message = `Should be a type of 'string'`
 
   ok(schema.validate(''))
   ok(schema.validate('false'))
