@@ -32,6 +32,18 @@ test('object.assert()', t => {
   )
 })
 
+test('object.props(): simple case', t => {
+  const schema = is.object().props({ id: is.number() })
+
+  ok(is.object().props().validate({}))
+  ok(is.object().props({}).validate({}))
+  ok(is.object().props({}).validate({ id: 1 }))
+  ok(schema.validate({ id: 1 }))
+  equal(schema.warn({}), `Should be a type of 'number'`)
+  equal(schema.warn({ name: 'John Connor' }), `Should be a type of 'number'`)
+  equal(schema.warn({ id: '123'}), `Should be a type of 'number'`)
+})
+
 test('object.props(): user: simple case', t => {
   const schema = is.object().props({
     id: is.number(),

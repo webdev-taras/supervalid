@@ -32,3 +32,13 @@ test('array.assert()', t => {
     },
   )
 })
+
+test('array.of(): simple cases', t => {
+  ok(is.array().of(is.boolean()).validate([]))
+  ok(is.array().of(is.number()).validate([1, 2, 3, 4, 5]))
+  ok(is.array().of(is.string()).validate(['owner', 'admin', 'seo']))
+  ok(is.array().of().validate([123, 'admin', true, {}]))
+
+  equal(is.array().of(is.number()).warn([1, 2, '3', 4, 5]), `Should be a type of 'number'`)
+  equal(is.array().of(is.number()).warn([1, 2, null, 4, 5]), `Should be a type of 'number'`)
+})
