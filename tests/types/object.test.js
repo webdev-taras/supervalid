@@ -26,8 +26,10 @@ test('object.assert()', t => {
   throws(
     () => schema.assert(3),
     {
-      name: 'TypeError',
+      name: 'ValidationError',
       message: `Should be a type of 'object'`,
+      reason: undefined,
+      value: '3',
     },
   )
 })

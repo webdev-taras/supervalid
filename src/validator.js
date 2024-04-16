@@ -1,3 +1,5 @@
+const { ValidationError } = require('./errors')
+
 module.exports = {
   rules: [],
   custom(rule) {
@@ -17,13 +19,15 @@ module.exports = {
   assert(value) {
     const result = this.warn(value)
     if (result !== undefined) {
-      // TODO: case when result is object
-      // TODO: case when result is error
-      const message = (typeof result === 'string')
-        ? result
-        : 'validation error'
-      // TODO: include into error: value, path, code, params...
-      throw new TypeError(message)
+      let reason, message
+      if (typeof result === 'string') {
+        message = result
+      } else {
+        reason = result
+      }
+      // TODO: case when reason is object
+      // TODO: case when reason is error
+      throw new ValidationError({ message, reason, value })
     }
   },
 }

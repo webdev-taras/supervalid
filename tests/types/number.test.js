@@ -27,8 +27,10 @@ test('number.assert()', t => {
   throws(
     () => schema.assert('100'),
     {
-      name: 'TypeError',
+      name: 'ValidationError',
       message: `Should be a type of 'number'`,
+      reason: undefined,
+      value: '"100"',
     },
   )
 })

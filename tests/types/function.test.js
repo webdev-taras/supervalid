@@ -27,8 +27,10 @@ test('function.assert()', t => {
   throws(
     () => schema.assert(3),
     {
-      name: 'TypeError',
+      name: 'ValidationError',
       message: `Should be a type of 'function'`,
+      reason: undefined,
+      value: '3',
     },
   )
 })

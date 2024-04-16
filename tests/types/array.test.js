@@ -26,8 +26,10 @@ test('array.assert()', t => {
   throws(
     () => schema.assert(3),
     {
-      name: 'TypeError',
+      name: 'ValidationError',
       message: `Should be a type of 'array'`,
+      reason: undefined,
+      value: '3',
     },
   )
 })

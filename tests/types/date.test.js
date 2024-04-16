@@ -30,8 +30,10 @@ test('date.assert()', t => {
   throws(
     () => schema.assert(2024),
     {
-      name: 'TypeError',
+      name: 'ValidationError',
       message: `Should be a type of 'date'`,
+      reason: undefined,
+      value: '2024',
     },
   )
 })

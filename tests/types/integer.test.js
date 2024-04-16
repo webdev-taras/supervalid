@@ -30,8 +30,10 @@ test('integer.assert()', t => {
   throws(
     () => schema.assert(3.14),
     {
-      name: 'TypeError',
+      name: 'ValidationError',
       message: `Should be a type of 'integer'`,
+      reason: undefined,
+      value: '3.14',
     },
   )
 })

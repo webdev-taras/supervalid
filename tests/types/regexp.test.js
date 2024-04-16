@@ -26,8 +26,10 @@ test('regexp.assert()', t => {
   throws(
     () => schema.assert(3),
     {
-      name: 'TypeError',
+      name: 'ValidationError',
       message: `Should be a type of 'regexp'`,
+      reason: undefined,
+      value: '3',
     },
   )
 })

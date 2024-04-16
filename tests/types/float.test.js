@@ -30,8 +30,10 @@ test('float.assert()', t => {
   throws(
     () => schema.assert(Infinity),
     {
-      name: 'TypeError',
+      name: 'ValidationError',
       message: `Should be a type of 'float'`,
+      reason: undefined,
+      value: 'null',
     },
   )
 })

@@ -41,18 +41,24 @@ test('any.assert()', t => {
     .custom(value => (value.length > 3) ? true : 'length should be > 3')
 
   schema.assert('qwerty')
+
   throws(
     () => schema.assert(3),
     {
-      name: 'TypeError',
-      message: 'validation error',
+      name: 'ValidationError',
+      message: 'Validation Error',
+      reason: 'false',
+      value: '3',
     },
   )
+
   throws(
     () => schema.assert('no'),
     {
-      name: 'TypeError',
+      name: 'ValidationError',
       message: 'length should be > 3',
+      reason: undefined,
+      value: '"no"',
     },
   )
 })
@@ -67,8 +73,10 @@ test('any.required()', t => {
   throws(
     () => schema.assert(),
     {
-      name: 'TypeError',
+      name: 'ValidationError',
       message: 'Value is required',
+      reason: undefined,
+      value: undefined,
     },
   )
 })
